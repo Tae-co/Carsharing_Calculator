@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "core-types",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-04-16T21:36:48+0900",
+      "summary": "src/types/index.ts 생성 — FeeSegment, FeeResult, SocarTieredRates, SocarElectricRates, SocarRates, ServiceType 타입 정의 완료",
+      "completed_at": "2026-04-16T21:40:00+0900"
     },
     {
       "step": 2,
