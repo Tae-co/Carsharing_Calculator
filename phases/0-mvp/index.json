@@ -7,7 +7,8 @@
       "name": "project-setup",
       "status": "completed",
       "started_at": "2026-04-16T21:32:17+0900",
-      "summary": "Vite+React+TypeScript+Tailwind+Vitest 프로젝트 셋업 완료, SEO 파일 생성"
+      "summary": "Vite+React+TypeScript+Tailwind+Vitest 프로젝트 셋업 완료, SEO 파일 생성",
+      "completed_at": "2026-04-16T21:36:34+0900"
     },
     {
       "step": 1,
