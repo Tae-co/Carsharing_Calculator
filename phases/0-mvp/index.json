@@ -1,0 +1,13 @@
+{
+  "project": "카셰어링 주행요금 계산기",
+  "phase": "0-mvp",
+  "steps": [
+    { "step": 0, "name": "project-setup", "status": "pending" },
+    { "step": 1, "name": "core-types", "status": "pending" },
+    { "step": 2, "name": "calc-logic", "status": "pending" },
+    { "step": 3, "name": "fee-breakdown", "status": "pending" },
+    { "step": 4, "name": "turuka-calculator", "status": "pending" },
+    { "step": 5, "name": "socar-calculator", "status": "pending" },
+    { "step": 6, "name": "app-shell", "status": "pending" }
+  ]
+}
