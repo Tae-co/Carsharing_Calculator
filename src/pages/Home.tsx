@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import Calculator from '../components/Calculator'
 import { calcTuruka } from '../lib/turuka'
 import { calcSocar } from '../lib/socar'
@@ -10,17 +11,26 @@ const SOCAR_EXAMPLE = { isElectric: false as const, upTo30: 210, upTo100: 190, o
 
 export default function Home() {
   return (
+    <>
+      <Helmet>
+        <title>카셰어링 주행요금 계산기 | 투루카·쏘카 구간별 요금 계산</title>
+        <meta name="description" content="투루카·쏘카 주행요금을 구간별로 즉시 계산해 드립니다. 거리와 km당 단가를 입력하면 구간별 내역과 합계를 바로 확인할 수 있어요." />
+        <meta name="keywords" content="카셰어링, 주행요금 계산기, 투루카 요금, 쏘카 요금, 카쉐어링 요금, 투루카 주행요금, 쏘카 주행요금, 카셰어링 비교" />
+        <link rel="canonical" href="https://carsharecalc.vercel.app/" />
+        <meta property="og:title" content="카셰어링 주행요금 계산기 | 투루카·쏘카" />
+        <meta property="og:description" content="투루카·쏘카 주행요금을 구간별로 즉시 계산해 드립니다. 단가를 입력하면 구간별 요금 내역과 합계를 바로 확인하세요." />
+        <meta property="og:url" content="https://carsharecalc.vercel.app/" />
+        <meta property="og:image" content="https://carsharecalc.vercel.app/og-image.png" />
+      </Helmet>
     <main className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-md mx-auto space-y-5">
+      <div className="max-w-lg mx-auto space-y-5">
 
         {/* 헤더 */}
         <header className="mb-6">
-          <h1 className="text-lg font-semibold text-blue-600">카셰어링 요금 계산기 (쏘카 · 투루카 주행요금 비교)</h1>
-          <p className="text-sm text-gray-500 mt-1 leading-relaxed">
-            투루카·쏘카의 주행요금 계산을 쉽게 할 수 있는 카셰어링 계산기입니다.<br/>
-            투루카 주행요금 계산도 지원하며, 거리별 단가를 입력하면 자동으로 비용을 계산해줍니다.<br/>
-            카셰어링 비용 비교를 통해 쏘카와 투루카 중 더 저렴한 서비스를 확인할 수 있습니다.<br />
-            주행요금 외 시간요금·보험료는 포함되지 않습니다.
+          <h1 className="text-2xl font-bold text-blue-600">카셰어링 주행요금 계산기</h1>
+          <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+            쏘카·투루카의 구간별 단가를 입력하면 주행요금을 자동으로 계산하고 두 서비스를 바로 비교할 수 있습니다.
+            시간요금·보험료는 포함되지 않습니다.
           </p>
         </header>
 
@@ -148,5 +158,6 @@ export default function Home() {
 
       </div>
     </main>
+    </>
   )
 }

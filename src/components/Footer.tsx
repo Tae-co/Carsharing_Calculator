@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export function Footer() {
   return (
     <footer className="border-t border-gray-200 mt-12 py-8 px-4">
-      <div className="max-w-md mx-auto space-y-4">
+      <div className="max-w-lg mx-auto space-y-4">
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500">
           <Link to="/" className="hover:text-blue-600 transition-colors">홈</Link>
           <Link to="/about" className="hover:text-blue-600 transition-colors">이용안내</Link>

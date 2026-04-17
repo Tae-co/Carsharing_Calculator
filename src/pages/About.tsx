@@ -1,9 +1,19 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 export default function About() {
   return (
+    <>
+      <Helmet>
+        <title>이용안내 | 카셰어링 주행요금 계산기</title>
+        <meta name="description" content="카셰어링 주행요금 계산기의 사용법, 계산 방식, 유의사항을 안내합니다. 투루카·쏘카 구간별 요금 계산 방법을 확인하세요." />
+        <link rel="canonical" href="https://carsharecalc.vercel.app/about" />
+        <meta property="og:title" content="이용안내 | 카셰어링 주행요금 계산기" />
+        <meta property="og:description" content="투루카·쏘카 주행요금 계산기의 사용법과 계산 방식을 안내합니다." />
+        <meta property="og:url" content="https://carsharecalc.vercel.app/about" />
+      </Helmet>
     <main className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-md mx-auto space-y-5">
+      <div className="max-w-lg mx-auto space-y-5">
 
         <header>
           <Link to="/" className="text-sm text-blue-600 hover:underline">← 계산기로 돌아가기</Link>
@@ -83,5 +93,6 @@ export default function About() {
 
       </div>
     </main>
+    </>
   )
 }

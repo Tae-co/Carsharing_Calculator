@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f8fafc"/>
+
+  <!-- 왼쪽 파란 사이드바 -->
+  <rect width="12" height="630" fill="#2563eb"/>
+
+  <!-- 중앙 카드 배경 -->
+  <rect x="80" y="160" width="1040" height="310" rx="20" fill="white" filter="url(#shadow)"/>
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="16" flood-color="#0000001a"/>
+    </filter>
+  </defs>
+
+  <!-- 메인 타이틀 -->
+  <text x="600" y="278" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="52" font-weight="700" fill="#1e293b" text-anchor="middle">카셰어링 주행요금 계산기</text>
+
+  <!-- 서브 텍스트 -->
+  <text x="600" y="344" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="30" fill="#64748b" text-anchor="middle">투루카 · 쏘카 구간별 요금을 즉시 비교</text>
+
+  <!-- 배지 2개 -->
+  <rect x="340" y="392" width="200" height="48" rx="24" fill="#eff6ff"/>
+  <text x="440" y="423" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="22" font-weight="600" fill="#2563eb" text-anchor="middle">투루카</text>
+
+  <rect x="660" y="392" width="200" height="48" rx="24" fill="#f0fdf4"/>
+  <text x="760" y="423" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="22" font-weight="600" fill="#16a34a" text-anchor="middle">쏘카</text>
+
+  <!-- URL -->
+  <text x="600" y="580" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="22" fill="#94a3b8" text-anchor="middle">carsharecalc.vercel.app</text>
+</svg>

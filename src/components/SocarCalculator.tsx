@@ -104,6 +104,9 @@ export function SocarCalculator() {
           </div>
         </div>
 
+        {/* 구분선 */}
+        <hr className="border-gray-200" />
+
         <div>
           <label htmlFor="socar-distance" className="block text-sm text-gray-700 mb-1.5">
             주행거리
@@ -131,6 +134,7 @@ export function SocarCalculator() {
 
       {result !== null ? (
         <div className="rounded-lg bg-white border border-gray-200 p-6">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">계산 결과</p>
           <FeeBreakdown result={result} isElectric={false} distanceKm={distanceKm as number} />
         </div>
       ) : (

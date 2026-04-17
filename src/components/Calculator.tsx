@@ -17,7 +17,7 @@ export default function Calculator() {
 
   return (
     <div className="space-y-5">
-      <div role="tablist" className="bg-gray-100 border border-gray-200 rounded-lg p-1 inline-flex">
+      <div role="tablist" className="bg-gray-100 border border-gray-200 rounded-lg p-1 flex">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -28,8 +28,8 @@ export default function Calculator() {
             onClick={() => setActiveTab(tab.id)}
             className={
               activeTab === tab.id
-                ? 'bg-blue-600 text-white shadow-sm rounded-md px-5 py-1.5 text-sm font-medium transition-colors'
-                : 'text-gray-500 hover:text-gray-700 px-5 py-1.5 text-sm cursor-pointer transition-colors'
+                ? 'flex-1 text-center bg-blue-600 text-white shadow-sm rounded-md px-5 py-1.5 text-sm font-medium transition-colors'
+                : 'flex-1 text-center text-gray-500 hover:text-gray-700 px-5 py-1.5 text-sm cursor-pointer transition-colors'
             }
           >
             {tab.label}

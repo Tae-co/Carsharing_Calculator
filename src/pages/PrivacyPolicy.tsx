@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 export default function PrivacyPolicy() {
   return (
+    <>
+      <Helmet>
+        <title>개인정보처리방침 | 카셰어링 주행요금 계산기</title>
+        <meta name="description" content="카셰어링 주행요금 계산기의 개인정보처리방침을 확인하세요." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://carsharecalc.vercel.app/privacy" />
+      </Helmet>
     <main className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-md mx-auto space-y-5">
+      <div className="max-w-lg mx-auto space-y-5">
 
         <header>
           <Link to="/" className="text-sm text-blue-600 hover:underline">← 계산기로 돌아가기</Link>
@@ -98,5 +106,6 @@ export default function PrivacyPolicy() {
 
       </div>
     </main>
+    </>
   )
 }

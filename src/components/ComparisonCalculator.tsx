@@ -24,7 +24,7 @@ interface RateInputProps {
 function RateInput({ id, label, value, onChange, placeholder }: RateInputProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs text-gray-500 mb-1">{label}</label>
+      <label htmlFor={id} className="block text-xs text-gray-600 mb-1 truncate">{label}</label>
       <div className="relative">
         <input
           id={id}
@@ -87,7 +87,7 @@ export function ComparisonCalculator() {
 
         <div className="space-y-3">
           <p className="text-xs font-medium text-blue-600 uppercase tracking-wide">투루카 단가</p>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-3">
             <RateInput id="cmp-t1" label="1~50km" value={t1} onChange={setT1} placeholder="260" />
             <RateInput id="cmp-t2" label="51~100km" value={t2} onChange={setT2} placeholder="250" />
             <RateInput id="cmp-t3" label="101km~" value={t3} onChange={setT3} placeholder="230" />
@@ -95,8 +95,8 @@ export function ComparisonCalculator() {
         </div>
 
         <div className="space-y-3">
-          <p className="text-xs font-medium text-blue-600 uppercase tracking-wide">쏘카 단가</p>
-          <div className="grid grid-cols-3 gap-2">
+          <p className="text-xs font-medium text-green-600 uppercase tracking-wide">쏘카 단가</p>
+          <div className="grid grid-cols-3 gap-3">
             <RateInput id="cmp-s1" label="0~30km" value={s1} onChange={setS1} placeholder="210" />
             <RateInput id="cmp-s2" label="30~100km" value={s2} onChange={setS2} placeholder="190" />
             <RateInput id="cmp-s3" label="100km~" value={s3} onChange={setS3} placeholder="170" />
@@ -132,7 +132,7 @@ export function ComparisonCalculator() {
             cheaper === "turuka"
               ? "bg-blue-50 border-blue-200 text-blue-700"
               : cheaper === "socar"
-              ? "bg-blue-50 border-blue-200 text-blue-700"
+              ? "bg-green-50 border-green-200 text-green-700"
               : "bg-gray-50 border-gray-200 text-gray-600"
           }`}>
             {cheaper === "same"
@@ -166,8 +166,8 @@ export function ComparisonCalculator() {
             </div>
 
             {/* 쏘카 */}
-            <div className={`rounded-lg border p-4 space-y-3 ${cheaper === "socar" ? "bg-blue-50 border-blue-200" : "bg-white border-gray-200"}`}>
-              <p className={`text-xs font-semibold uppercase tracking-wide ${cheaper === "socar" ? "text-blue-600" : "text-gray-400"}`}>
+            <div className={`rounded-lg border p-4 space-y-3 ${cheaper === "socar" ? "bg-green-50 border-green-200" : "bg-white border-gray-200"}`}>
+              <p className={`text-xs font-semibold uppercase tracking-wide ${cheaper === "socar" ? "text-green-600" : "text-gray-400"}`}>
                 쏘카 {cheaper === "socar" && "👑"}
               </p>
               <div className="space-y-1.5">
@@ -180,7 +180,7 @@ export function ComparisonCalculator() {
               </div>
               <div className="border-t border-gray-200 pt-2 flex justify-between items-baseline">
                 <span className="text-xs text-gray-400">합계</span>
-                <span className={`text-base font-semibold tabular-nums ${cheaper === "socar" ? "text-blue-600" : "text-gray-900"}`}>
+                <span className={`text-base font-semibold tabular-nums ${cheaper === "socar" ? "text-green-600" : "text-gray-900"}`}>
                   {formatKRW(socarResult!.total)}
                 </span>
               </div>

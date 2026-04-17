@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://carsharing-fee.vercel.app/sitemap.xml
+Sitemap: https://carsharecalc.vercel.app/sitemap.xml
