@@ -53,7 +53,10 @@
     {
       "step": 6,
       "name": "app-shell",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-04-17T10:51:13+0900",
+      "summary": "Calculator.tsx + App.tsx + main.tsx 조립 완료, 탭 전환 + 전체 앱 빌드 성공",
+      "completed_at": "2026-04-17T10:52:30+0900"
     }
   ],
   "created_at": "2026-04-16T21:32:17+0900"
