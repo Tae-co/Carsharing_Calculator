@@ -48,7 +48,7 @@
       "status": "completed",
       "started_at": "2026-04-17T10:47:12+0900",
       "summary": "SocarCalculator.tsx 구현 완료 — 단가 3개 입력, 전기차 토글, calcSocar 호출, FeeBreakdown 연결",
-      "completed_at": "2026-04-17T10:48:30+0900"
+      "completed_at": "2026-04-17T10:49:55+0900"
     },
     {
       "step": 6,
