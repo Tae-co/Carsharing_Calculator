@@ -29,15 +29,18 @@
     {
       "step": 3,
       "name": "fee-breakdown",
-      "status": "error",
+      "status": "completed",
       "started_at": "2026-04-16T21:46:26+0900",
-      "error_message": "[3회 시도 후 실패] Step did not update status",
-      "failed_at": "2026-04-16T21:46:58+0900"
+      "summary": "FeeBreakdown.tsx 구현 완료 — 구간 내역 테이블, 합계, 전기차 탄소중립 배너 렌더링",
+      "completed_at": "2026-04-16T21:46:58+0900"
     },
     {
       "step": 4,
       "name": "turuka-calculator",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-04-17T10:43:38+0900",
+      "summary": "TurukaCalculator.tsx 구현 완료 — 거리 입력, calcTuruka 호출, FeeBreakdown 연결",
+      "completed_at": "2026-04-17T10:44:30+0900"
     },
     {
       "step": 5,
