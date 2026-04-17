@@ -7,6 +7,10 @@ out/
 next-env.d.ts
 tsconfig.tsbuildinfo
 
-# phase execution outputs
-phases/**/phase*-output.json
-phases/**/step*-output.json
+# Claude Code 관련 파일
+.claude/
+CLAUDE.md
+docs/
+phases/
+scripts/
+.pytest_cache/
