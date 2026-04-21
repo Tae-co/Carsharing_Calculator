@@ -5,19 +5,26 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>이용안내 | 카셰어링 주행요금 계산기</title>
-        <meta name="description" content="카셰어링 주행요금 계산기의 사용법, 계산 방식, 유의사항을 안내합니다. 투루카·쏘카 구간별 요금 계산 방법을 확인하세요." />
+        <title>쏘카 주행요금 계산 방법 · 투루카 주행요금 계산 방법 | 이용안내</title>
+        <meta name="description" content="쏘카 주행요금 계산 방법과 투루카 주행요금 계산 방법, 사용법, 유의사항을 안내합니다. 구간별 주행요금 계산 기준을 쉽게 확인해 보세요." />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href="https://carsharecalc.vercel.app/about" />
-        <meta property="og:title" content="이용안내 | 카셰어링 주행요금 계산기" />
-        <meta property="og:description" content="투루카·쏘카 주행요금 계산기의 사용법과 계산 방식을 안내합니다." />
+        <meta property="og:title" content="쏘카 주행요금 계산 방법 · 투루카 주행요금 계산 방법" />
+        <meta property="og:description" content="쏘카 주행요금 계산 방법과 투루카 주행요금 계산 방법, 사용법과 유의사항을 확인하세요." />
         <meta property="og:url" content="https://carsharecalc.vercel.app/about" />
+        <meta property="og:image" content="https://carsharecalc.vercel.app/og-image.png" />
+        <meta property="og:image:secure_url" content="https://carsharecalc.vercel.app/og-image.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="카셰어링 주행요금 계산기 — 투루카·쏘카 요금 비교" />
       </Helmet>
     <main className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-lg mx-auto space-y-5">
 
         <header>
           <Link to="/" className="text-sm text-blue-600 hover:underline">← 계산기로 돌아가기</Link>
-          <h1 className="text-lg font-semibold text-gray-900 mt-4">이용안내</h1>
+          <h1 className="text-lg font-semibold text-gray-900 mt-4">쏘카·투루카 주행요금 계산 방법 이용안내</h1>
         </header>
 
         <section className="rounded-lg bg-white border border-gray-200 p-6 space-y-4">
@@ -25,7 +32,7 @@ export default function About() {
           <p className="text-sm text-gray-600 leading-relaxed">
             카셰어링 주행요금 계산기는 투루카·쏘카 이용 시 발생하는 주행요금을 구간별로 미리 계산해 볼 수 있는 무료 웹 서비스입니다.
             카셰어링 서비스는 일정 거리 이상 주행하면 구간별로 다른 단가가 적용되는 체감 요금 구조를 가지고 있어,
-            단순 계산으로는 예상 요금을 정확하게 파악하기 어렵습니다. 이 계산기는 그 불편함을 해소하기 위해 만들어졌습니다.
+            단순 계산으로는 예상 요금을 정확하게 파악하기 어렵습니다. 이 계산기는 쏘카 주행요금 계산 방법과 투루카 주행요금 계산 방법을 쉽게 확인할 수 있도록 만들어졌습니다.
           </p>
         </section>
 
