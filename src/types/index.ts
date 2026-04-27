@@ -1,4 +1,4 @@
-export type ServiceType = "turuka" | "socar"
+export type ServiceType = "turuka" | "socar" | "greencar"
 
 export interface FeeSegment {
   label: string
