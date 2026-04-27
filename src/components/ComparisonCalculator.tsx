@@ -67,6 +67,8 @@ export function ComparisonCalculator() {
   const greencarReady = typeof g1 === "number" && typeof g2 === "number" && typeof g3 === "number"
   const hasDistance = typeof distanceKm === "number" && distanceKm > 0
 
+  const readyRatesCount = [turukaReady, socarReady, greencarReady].filter(Boolean).length
+
   const turukaResult =
     turukaReady && hasDistance
       ? calcTuruka(distanceKm, { tier1: t1, tier2: t2, tier3: t3 })
@@ -82,47 +84,65 @@ export function ComparisonCalculator() {
       ? calcGreencar({ upTo30: g1, upTo100: g2, over100: g3 }, distanceKm)
       : null
 
-  const canCompare = turukaResult !== null && socarResult !== null && greencarResult !== null
+  const services = [
+    {
+      key: "turuka" as const,
+      label: "투루카",
+      result: turukaResult,
+      colors: {
+        label: "text-blue-600",
+        bg: "bg-blue-50",
+        border: "border-blue-200",
+        total: "text-blue-600",
+        banner: "bg-blue-50 border-blue-200 text-blue-700",
+      },
+    },
+    {
+      key: "socar" as const,
+      label: "쏘카",
+      result: socarResult,
+      colors: {
+        label: "text-green-600",
+        bg: "bg-green-50",
+        border: "border-green-200",
+        total: "text-green-600",
+        banner: "bg-green-50 border-green-200 text-green-700",
+      },
+    },
+    {
+      key: "greencar" as const,
+      label: "그린카",
+      result: greencarResult,
+      colors: {
+        label: "text-orange-500",
+        bg: "bg-orange-50",
+        border: "border-orange-200",
+        total: "text-orange-500",
+        banner: "bg-orange-50 border-orange-200 text-orange-700",
+      },
+    },
+  ]
 
-  const minTotal = canCompare
-    ? Math.min(turukaResult!.total, socarResult!.total, greencarResult!.total)
-    : null
+  const readyServices = services.filter(s => s.result !== null)
+  const canCompare = readyServices.length >= 2
 
-  const isWinner = canCompare
-    ? {
-        turuka: turukaResult!.total === minTotal,
-        socar: socarResult!.total === minTotal,
-        greencar: greencarResult!.total === minTotal,
-      }
-    : null
-
-  const winnerCount = isWinner ? Object.values(isWinner).filter(Boolean).length : 0
+  const minTotal = canCompare ? Math.min(...readyServices.map(s => s.result!.total)) : null
+  const winnerCount = canCompare ? readyServices.filter(s => s.result!.total === minTotal).length : 0
+  const winner = canCompare && winnerCount === 1 ? readyServices.find(s => s.result!.total === minTotal) : null
 
   const bannerMsg = canCompare
-    ? winnerCount > 1
-      ? "요금이 동일합니다"
-      : isWinner!.turuka
-      ? "투루카가 가장 저렴합니다"
-      : isWinner!.socar
-      ? "쏘카가 가장 저렴합니다"
-      : "그린카가 가장 저렴합니다"
+    ? winner ? `${winner.label}가 가장 저렴합니다` : "요금이 동일합니다"
     : null
 
   const bannerClass = canCompare
-    ? winnerCount > 1
-      ? "bg-gray-50 border-gray-200 text-gray-600"
-      : isWinner!.turuka
-      ? "bg-blue-50 border-blue-200 text-blue-700"
-      : isWinner!.socar
-      ? "bg-green-50 border-green-200 text-green-700"
-      : "bg-orange-50 border-orange-200 text-orange-700"
+    ? (winner?.colors.banner ?? "bg-gray-50 border-gray-200 text-gray-600")
     : ""
 
   return (
     <section className="space-y-5">
       {/* 단가 입력 */}
       <div className="rounded-lg bg-white border border-gray-200 p-6 space-y-5">
-        <p className="text-xs text-gray-400">세 서비스의 단가를 모두 입력하면 한 번에 비교합니다.</p>
+        <p className="text-xs text-gray-400">두 개 이상의 단가를 입력하면 바로 비교합니다.</p>
 
         <div className="space-y-3">
           <p className="text-xs font-medium text-blue-600 uppercase tracking-wide">투루카 단가</p>
@@ -180,79 +200,44 @@ export function ComparisonCalculator() {
             {bannerMsg}
           </div>
 
-          {/* 3열 결과 카드 */}
-          <div className="grid grid-cols-3 gap-2">
-            {/* 투루카 */}
-            <div className={`rounded-lg border p-3 space-y-2 ${isWinner!.turuka ? "bg-blue-50 border-blue-200" : "bg-white border-gray-200"}`}>
-              <p className={`text-xs font-semibold ${isWinner!.turuka ? "text-blue-600" : "text-gray-400"}`}>
-                투루카 {isWinner!.turuka && winnerCount === 1 && "👑"}
-              </p>
-              <div className="space-y-1">
-                {turukaResult!.segments.map((seg, i) => (
-                  <div key={i} className="flex justify-between text-xs text-gray-500">
-                    <span className="truncate mr-1">{seg.label}</span>
-                    <span className="tabular-nums shrink-0">{formatKRW(seg.subtotal)}</span>
+          {/* 결과 카드 */}
+          <div className={`grid gap-2 ${readyServices.length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+            {readyServices.map((service) => {
+              const isWin = service.result!.total === minTotal
+              return (
+                <div
+                  key={service.key}
+                  className={`rounded-lg border p-3 space-y-2 ${isWin ? `${service.colors.bg} ${service.colors.border}` : "bg-white border-gray-200"}`}
+                >
+                  <p className={`text-xs font-semibold ${isWin ? service.colors.label : "text-gray-400"}`}>
+                    {service.label} {isWin && winnerCount === 1 && "👑"}
+                  </p>
+                  <div className="space-y-1">
+                    {service.result!.segments.map((seg, i) => (
+                      <div key={i} className="flex justify-between text-xs text-gray-500">
+                        <span className="truncate mr-1">{seg.label}</span>
+                        <span className="tabular-nums shrink-0">{formatKRW(seg.subtotal)}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <div className="border-t border-gray-200 pt-1.5 flex justify-between items-baseline">
-                <span className="text-xs text-gray-400">합계</span>
-                <span className={`text-sm font-semibold tabular-nums ${isWinner!.turuka ? "text-blue-600" : "text-gray-900"}`}>
-                  {formatKRW(turukaResult!.total)}
-                </span>
-              </div>
-            </div>
-
-            {/* 쏘카 */}
-            <div className={`rounded-lg border p-3 space-y-2 ${isWinner!.socar ? "bg-green-50 border-green-200" : "bg-white border-gray-200"}`}>
-              <p className={`text-xs font-semibold ${isWinner!.socar ? "text-green-600" : "text-gray-400"}`}>
-                쏘카 {isWinner!.socar && winnerCount === 1 && "👑"}
-              </p>
-              <div className="space-y-1">
-                {socarResult!.segments.map((seg, i) => (
-                  <div key={i} className="flex justify-between text-xs text-gray-500">
-                    <span className="truncate mr-1">{seg.label}</span>
-                    <span className="tabular-nums shrink-0">{formatKRW(seg.subtotal)}</span>
+                  <div className="border-t border-gray-200 pt-1.5 flex justify-between items-baseline">
+                    <span className="text-xs text-gray-400">합계</span>
+                    <span className={`text-sm font-semibold tabular-nums ${isWin ? service.colors.total : "text-gray-900"}`}>
+                      {formatKRW(service.result!.total)}
+                    </span>
                   </div>
-                ))}
-              </div>
-              <div className="border-t border-gray-200 pt-1.5 flex justify-between items-baseline">
-                <span className="text-xs text-gray-400">합계</span>
-                <span className={`text-sm font-semibold tabular-nums ${isWinner!.socar ? "text-green-600" : "text-gray-900"}`}>
-                  {formatKRW(socarResult!.total)}
-                </span>
-              </div>
-            </div>
-
-            {/* 그린카 */}
-            <div className={`rounded-lg border p-3 space-y-2 ${isWinner!.greencar ? "bg-orange-50 border-orange-200" : "bg-white border-gray-200"}`}>
-              <p className={`text-xs font-semibold ${isWinner!.greencar ? "text-orange-500" : "text-gray-400"}`}>
-                그린카 {isWinner!.greencar && winnerCount === 1 && "👑"}
-              </p>
-              <div className="space-y-1">
-                {greencarResult!.segments.map((seg, i) => (
-                  <div key={i} className="flex justify-between text-xs text-gray-500">
-                    <span className="truncate mr-1">{seg.label}</span>
-                    <span className="tabular-nums shrink-0">{formatKRW(seg.subtotal)}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="border-t border-gray-200 pt-1.5 flex justify-between items-baseline">
-                <span className="text-xs text-gray-400">합계</span>
-                <span className={`text-sm font-semibold tabular-nums ${isWinner!.greencar ? "text-orange-500" : "text-gray-900"}`}>
-                  {formatKRW(greencarResult!.total)}
-                </span>
-              </div>
-            </div>
+                </div>
+              )
+            })}
           </div>
 
           <p className="text-xs text-gray-400">* 주행요금만 포함. 시간요금·보험료·주차비는 별도입니다. 실제 주행요금과 다를 수 있습니다.</p>
         </div>
       ) : (
         <p className="text-center text-sm text-gray-400 py-2">
-          {!hasDistance
-            ? "주행거리를 입력하면 비교 결과가 표시됩니다."
-            : "세 서비스의 단가를 모두 입력해주세요."}
+          {readyRatesCount < 2
+            ? "두 개 이상의 서비스 단가를 입력해주세요."
+            : "주행거리를 입력하면 비교 결과가 표시됩니다."}
         </p>
       )}
     </section>
